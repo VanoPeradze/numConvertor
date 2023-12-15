@@ -1,166 +1,18 @@
-
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Converter with Process</title>
-    <style>
-        *{
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-            font-size: 24px;
-        }
-
-        body {
-            background-color: rgb(63, 63, 63);
-        }
-
-        .exponent {
-            vertical-align: super;
-            font-size: smaller;
-        }
-
-        .base-conversion {
-            display: inline-block;
-        }
-
-        #resultCont,
-        #processCont {
-            display: none;
-        }
-
-        #mainContainer {
-           display: block;
-        }
-
-        select {
-            width: 13%;
-        }
-
-        input {
-            width: 12.3%;
-        }
-
-        select,
-        input {
-            margin-bottom: 15px;
-            padding: 5px 5px;
-        }
-
-        label {
-            position: absolute;
-            text-align: right;
-            transform: translateX(-105%);
-            color: white;
-            padding: 5px 5px;
-        }
-
-        h2 {
-            color: white;
-        }
-
-        button {
-            width: 13%;
-            padding: 5px 5px;
-            background-color: rgb(240, 89, 30);
-            border: none;
-            border: 1px solid white;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: 0.2s;
-            color: white;
-        }
-
-        button:hover {
-            background-color: rgb(247, 123, 74);
-        }
-
-        
-
-    </style>
-    <script>
-        function convertNumber() {
-            var inputNum = document.getElementById("inputNumber").value;
-            var inputBase = document.getElementById("inputBase").value;
-            var outputBase = document.getElementById("outputBase").value;
-
-            var result = document.getElementById("result");
-            var process = document.getElementById("process");
-
-            // Check if the conversion is for IP addresses
-            if (inputBase === 'ip' || outputBase === 'ip') {
-                if (inputBase === 'ip' && outputBase === '2') {
-                    // Convert IP address to binary
-                    var binaryIP = ipToBinary(inputNum);
-                    result.innerHTML = binaryIP;
-                    process.innerHTML = "IP address converted to binary.";
-                } else if (inputBase === '2' && outputBase === 'ip') {
-                    // Convert binary to IP address (if needed)
-                    var ip = binaryToIp(inputNum);
-                    result.innerHTML = ip;
-                    process.innerHTML = "Binary converted to IP address.";
-                } else {
-                    result.innerHTML = "Invalid conversion for IP addresses.";
-                    process.innerHTML = "";
-                }
-            } else {
-                // Your existing conversion logic for other number bases
-                var processSteps = "";
-                var decimalNumber = parseInt(inputNum, inputBase);
-
-                if (inputBase !== '10') {
-                    processSteps += "<span class='base-conversion'>(" + inputNum + ")<sub>" + inputBase + "</sub> = ";
-                    var digits = inputNum.split('');
-                    var exponent = digits.length - 1;
-
-                    for (var i = 0; i < digits.length; i++) {
-                        var term = "(" + digits[i] + " × 2<span class='exponent'>" + exponent + "</span>)";
-                        processSteps += term;
-                        
-                        if (i < digits.length - 1) {
-                            processSteps += " + ";
-                        }
-                        
-                        exponent--;
-                    }
-                    processSteps += " = (" + decimalNumber + ")<sub>10</sub></span>";
-                } else {
-                    processSteps += "No conversion needed for base 10.";
-                }
-
-                var outputNumber = decimalNumber.toString(outputBase);
-                result.innerHTML = outputNumber.toUpperCase();
-                process.innerHTML = processSteps;
-            }
-
-            var resultContainer = document.getElementById("resultCont");
-            var processContainer = document.getElementById("processCont");
-            resultContainer.style.display = "block";
-            processContainer.style.display = "block";
-            resultContainer.style.color = "white";
-            processContainer.style.color = "white";
-        }
-
-        // Function to convert IP address to binary
-        function ipToBinary(ip) {
-            return ip.split('.').map(function(octet) {
-                return parseInt(octet).toString(2).padStart(8, '0');
-            }).join('.');
-        }
-
-        // Function to convert binary to IP address (if needed)
-        function binaryToIp(binary) {
-            return binary.split('.').map(function(bits) {
-                return parseInt(bits, 2).toString(10);
-            }).join('.');
-        }
-        
-    </script>
+    <link rel="stylesheet" href="style.css">
+    <script src="numConverter.js"></script>
+   
 </head>
 <body>
     <h2>Number Converter</h2>
     
     <div id="mainContainer">
-        <label for="inputNumber">Enter Number or IP Address:</label>
+        <label id="inputNumberLabel" for="inputNumber">Enter Number or IP Address:</label>
         <input type="text" id="inputNumber" placeholder="Enter number or IP address">
 
         <br>

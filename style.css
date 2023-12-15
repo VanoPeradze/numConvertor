@@ -1,0 +1,115 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 24px;
+}
+
+body {
+    background-color: rgb(63, 63, 63);
+}
+
+.exponent {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+.base-conversion {
+    display: inline-block;
+}
+
+#resultCont,
+#processCont {
+    display: none;
+}
+
+#mainContainer {
+   display: block;
+}
+
+select {
+    width: 13%;
+}
+
+input {
+    width: 12.3%;
+}
+
+select,
+input {
+    margin-bottom: 15px;
+    padding: 5px 5px;
+}
+
+
+
+
+label {
+    position: absolute;
+    text-align: right;
+    transform: translateX(-105%);
+    color: white;
+    padding: 5px 5px;
+}
+
+h2 {
+    color: white;
+}
+
+button {
+    width: 13%;
+    padding: 5px 5px;
+    background-color: rgb(240, 89, 30);
+    border: none;
+    border: 1px solid white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+}
+
+button:hover {
+    background-color: rgb(247, 123, 74);
+}
+
+@media (max-width: 500px) {
+    select {
+        width: 85%;
+    }
+    input {
+        width: 80%;
+    }
+
+    button { 
+        width: 60%;
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+    * {
+        font-size: 17px;
+    }
+
+    #mainContainer {
+        width: 70%;
+        margin: auto;
+    }
+
+    label {
+        margin: auto;
+        margin-left: 50px;
+        margin-right: 50px;
+        position: relative;
+        /* background-color: green; */
+        margin-bottom: 10px;
+    }
+
+    #inputNumberLabel {
+        margin-left: 10px;
+        margin-right: 10px;
+    } 
+
+    button:hover {
+        background-color: rgb(240, 89, 30);
+    }
+    
+}
